@@ -1,11 +1,8 @@
-import { Button } from "../ui/button";
-import { useUser, UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState } from "react"; 
 import NGOlogo from "../../assets/NGOlogo.png";
 
 function Header() {
-  const { isSignedIn } = useUser();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -14,8 +11,8 @@ function Header() {
     <>
       <Link to="/" className="py-2 hover:text-violet-600 hover:scale-110 text-[20px] no-underline">Home</Link>
       <Link to="/dashboard" className="py-2 hover:text-violet-600 hover:scale-110 text-[20px] no-underline">Dashboard</Link>
-      <Link to="/Aboutus" className="py-2 hover:text-violet-600 hover:scale-110 text-[20px] no-underline">About Us</Link>
-      <Link to="/Donate" className="py-2 hover:text-violet-600 hover:scale-110 text-[20px] no-underline">Donate</Link>
+      <Link to="/aboutus" className="py-2 hover:text-violet-600 hover:scale-110 text-[20px] no-underline">About Us</Link>
+      <Link to="/donate" className="py-2 hover:text-violet-600 hover:scale-110 text-[20px] no-underline">Donate</Link>
     </>
   );
 
@@ -46,14 +43,12 @@ function Header() {
       {/* Desktop Navbar */}
       <div className="hidden lg:flex justify-between gap-7 items-center">
         {links}
-        {isSignedIn ? <UserButton /> : <Link to="/auth/sign-in"><Button>Get Started</Button></Link>}
       </div>
 
       {/* Mobile Navbar */}
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-lg flex flex-col items-start p-5 z-50">
           {links}
-          {isSignedIn ? <UserButton /> : <Link to="/auth/sign-in"><Button>Get Started</Button></Link>}
         </div>
       )}
     </div>
