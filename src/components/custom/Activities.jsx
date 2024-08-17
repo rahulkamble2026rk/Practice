@@ -1,9 +1,9 @@
-import card1 from '../assets/card1.jpeg';
-import card2 from '../assets/card2.jpg';
-import card3 from '../assets/card3.jpg';
-import card4 from '../assets/card4.jpg';
+import card1 from '../../assets/card1.jpeg';
+import card2 from '../../assets/card2.jpg';
+import card3 from '../../assets/card3.jpg';
+import card4 from '../../assets/card4.jpg';
 
-function Dashboard() {
+function Activities() {
   return (
     <div className='p-6 md:px-16 lg:px-24'>
 
@@ -82,4 +82,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard;
+export default Activities;

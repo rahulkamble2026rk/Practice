@@ -1,37 +1,128 @@
-
+import { useState } from 'react';
 import '../../index.css';
+import About from '../../assets/About.png';
+
 function AboutUs() {
+  const [openSection, setOpenSection] = useState('mission'); // Default to 'mission'
+
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center mt-2 bg-gray-100 ">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl w-full md:w-3/4 lg:w-2/3"> 
-        
-         
-      <div className="heading-container ">
-            <h1 className="heading">
-            <span>  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center">About Our NGO</h2></span>
-            </h1>
+    <div className="bg-white min-h-screen flex flex-col items-center">
+      {/* Main Content */}
+      <div className="w-full flex flex-col items-center bg-gray-100 py-4">
+        <h2 className="text-4xl font-bold text-center text-green-800 mb-2">ABOUT US</h2>
+
+        {/* Full-width Image */}
+        <div className="w-full flex justify-center">
+          <img
+            src={About}
+            alt="About Us"
+            className="px-20 py-4 rounded-lg"
+            style={{ width: '100%', maxHeight: '800px', borderRadius: '12px' }}  
+          />
+        </div>
+
+        <div className="flex w-full max-w-7xl mx-auto">
+          {/* Left Side Navigation */}
+          <div className="w-1/4 p-4">
+            <ul className="space-y-4 text-lg font-semibold">
+              <li>
+                <button 
+                  className="relative text-black w-full text-left after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-full after:w-0 after:bg-yellow-500 after:transition-all after:duration-300 after:opacity-50 hover:after:w-full"
+                  onClick={() => toggleSection('story')}
+                >
+                  Our Story
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="relative text-black w-full text-left after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-full after:w-0 after:bg-yellow-500 after:transition-all after:duration-300 after:opacity-50 hover:after:w-full"
+                  onClick={() => toggleSection('vision')}
+                >
+                  Vision
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="relative text-black w-full text-left after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-full after:w-0 after:bg-yellow-500 after:transition-all after:duration-300 after:opacity-50 hover:after:w-full"
+                  onClick={() => toggleSection('mission')}
+                >
+                  Mission
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="relative text-black w-full text-left after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-full after:w-0 after:bg-yellow-500 after:transition-all after:duration-300 after:opacity-50 hover:after:w-full"
+                  onClick={() => toggleSection('howWeWork')}
+                >
+                  How we work?
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="relative text-black w-full text-left after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-full after:w-0 after:bg-yellow-500 after:transition-all after:duration-300 after:opacity-50 hover:after:w-full"
+                  onClick={() => toggleSection('trust')}
+                >
+                  Why trust us?
+                </button>
+              </li>
+            </ul>
           </div>
 
-
-        <p className="mt-10 text-muted-foreground">
-          Our NGO was founded in 2010 with the mission of empowering underserved communities and promoting
-          sustainable development. We believe in the power of grassroots initiatives to create lasting change.
-          Over the years, we have implemented a wide range of programs focused on education, healthcare, and
-          environmental conservation. Our team of dedicated volunteers and staff work tirelessly to make a positive
-          impact in the lives of those we serve.
-        </p>
-        <p className="mt-4 text-muted-foreground">
-          We are committed to transparency, accountability, and ethical practices in all that we do. Our core values
-          of compassion, integrity, and empowerment guide our every decision and action. Our NGO was founded in 2010
-          by a group of passionate individuals who saw the need for an organization that could address the pressing
-          issues facing underserved communities. Over the past 13 years, we have grown to become a respected and
-          trusted organization, with a track record of successful programs and initiatives.
-        </p>
-        <p className="mt-4 text-muted-foreground">
-          Our history is one of resilience, innovation, and a steadfast commitment to making a positive difference
-          in the world. We have weathered challenges, adapted to changing circumstances, and remained focused on our
-          core mission of empowering those in need.
-        </p>
+          {/* Right Side Content */}
+          <div className="w-3/4 p-4">
+            {/* Conditionally Rendered Content */}
+            {openSection === 'story' && (
+              <div>
+                <h3 className="text-4xl font-bold text-green-800 mb-4 text-center">Our Story</h3>
+                <p className="text-lg mb-4">
+                  Our story began with a simple idea: to make a difference in the lives of those who need it the most. Over the years, we have grown into a global movement, impacting communities worldwide.
+                </p>
+              </div>
+            )}
+            {openSection === 'vision' && (
+              <div>
+                <h3 className="text-4xl font-bold text-green-800 mb-4 text-center">Vision</h3>
+                <p className="text-lg mb-4">
+                  Our vision is to create a world where every individual has the opportunity to lead a fulfilling life, free from poverty and inequality.
+                </p>
+              </div>
+            )}
+            {openSection === 'mission' && (
+              <div>
+                <h3 className="text-4xl font-bold text-green-800 mb-4 text-center">Mission</h3>
+                <p className="text-lg mb-4">
+                  At HopeRise, our mission is to empower underprivileged communities by providing access to education, healthcare, and sustainable development opportunities. We believe that every individual deserves the chance to thrive, and we work tirelessly to remove the barriers that prevent so many from reaching their full potential.
+                </p>
+                <p className="text-lg mb-4">
+                  Our approach is holistic, addressing the root causes of poverty and inequality. We collaborate with local leaders, volunteers, and global partners to deliver programs that are impactful and sustainable. From building schools in remote areas to offering healthcare services in underserved regions, we are committed to creating lasting change.
+                </p>
+                <p className="text-lg mt-4">
+                  Through our initiatives, we have seen firsthand the incredible resilience and potential of the communities we serve. We are inspired daily by the stories of transformation and hope, and we are dedicated to expanding our reach to touch even more lives. Together, we can build a world where every person has the opportunity to succeed.
+                </p>
+              </div>
+            )}
+            {openSection === 'howWeWork' && (
+              <div>
+                <h3 className="text-4xl font-bold text-green-800 mb-4 text-center">How We Work?</h3>
+                <p className="text-lg mb-4">
+                  Our work is guided by the principles of community engagement and sustainability. We collaborate closely with local leaders and partners to ensure that our initiatives are aligned with the needs and aspirations of the communities we serve.
+                </p>
+              </div>
+            )}
+            {openSection === 'trust' && (
+              <div>
+                <h3 className="text-4xl font-bold text-green-800 mb-4 text-center">Why Trust Us?</h3>
+                <p className="text-lg mb-4">
+                  Trust is the cornerstone of our work. We are committed to transparency, accountability, and ethical practices in all our operations. Our track record of successful projects and satisfied beneficiaries speaks to our credibility and dedication.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

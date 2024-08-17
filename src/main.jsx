@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './home/index.jsx';
-import Dashboard from './dashboard/index.jsx';
+import Home from './LandingPage/index.jsx';
 import Aboutus from './components/custom/Aboutus.jsx';
 import Donate from './components/custom/Donate.jsx'; 
 import Partners from './components/custom/Partners.jsx';
 import Volunteer from './components/custom/Volunteer.jsx';
+import Activities from './components/custom/Activities.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,8 +16,8 @@ const router = createBrowserRouter([
     children: 
     [
       {
-        path: '/dashboard',
-        element: <Dashboard />
+        path: '/activities',
+        element: <Activities />
       },
       {
         path: '/aboutus',

@@ -1,72 +1,113 @@
-import Header from '@/components/custom/Header';
+import  { useState, useEffect } from 'react';
+import Header from '../Navbar/index';
 import Image1 from '../assets/Image1.jpg';
 import Image2 from '../assets/Image2.jpg';
 import Image3 from '../assets/Image3.jpg';
-import Image4 from '../assets/Image4.jpg';
+
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardFooter, CardContent } from '@/components/ui/card';
+import Footer from '../Footer/index';
+
+const slides = [
+  {
+    image: Image1,
+    title: "Children’s Hope Fund",
+    description: "$123,456 raised",
+    donations: "1.8K donations",
+    progress: "80%", // Progress bar width
+  },
+  {
+    image: Image2,
+    title: "Disaster Relief Fund",
+    description: "$98,765 raised",
+    donations: "2K donations",
+    progress: "70%", // Progress bar width
+  },
+  {
+    image: Image3,
+    title: "Senior Care Fund",
+    description: "$45,000 raised",
+    donations: "900 donations",
+    progress: "50%", // Progress bar width
+  }
+];
 
 function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const imageStyles = {
-    width: '100%',
-    height: '450px',
-    borderRadius: '15px' // Adjust the radius to your preference
+  const handleNextClick = () => {
+    setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
   };
+
+  const handlePrevClick = () => {
+    setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(handleNextClick, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, []);
 
   return (
     <div>
-      {/* Updated Header with fixed positioning */}
+      {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <Header />
       </div>
 
-      <div className="pt-20"> {/* Add padding to avoid content being hidden behind the header */}
-        <div>
-          <h1 className='text-center text-5xl my-3 font-serif text-black tracking-tighter mt-3'>Welcome to InspireGrowth Foundation</h1>
-          <h1 className='text-center text-2xl font-serif'>Empowering Lives, One Step at a Time</h1>
-        </div>
-
-        <div className="bg-[#fffefd]">
-          <div className="container mx-auto py-8"> {/* Added `mx-auto` and `py-8` to adjust spacing */}
-            <div className="carousel slide carousel-dark" id="topbanner" data-bs-ride="carousel" data-bs-interval="5000" data-bs-touch="true">
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <img src={Image1} style={imageStyles} className="d-block" alt="image loading" />
-                </div>
-                <div className="carousel-item">
-                  <img src={Image2} style={imageStyles} className="d-block" alt="image loading" />
-                </div>
-                <div className="carousel-item">
-                  <img src={Image3} style={imageStyles} className="d-block" alt="image loading" />
-                </div>
-                <div className="carousel-item">
-                  <img src={Image4} style={imageStyles} className="d-block" alt="image loading" />
-                </div>
-              </div>
-              <button className="carousel-control-prev" data-bs-target="#topbanner" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon"></span>
-              </button>
-              <button className="carousel-control-next" data-bs-target="#topbanner" data-bs-slide="next">
-                <span className="carousel-control-next-icon"></span>
-              </button>
-            </div>
+      <div className="pt-20">
+        {/* Add padding to avoid content being hidden behind the header */}
+        
+        <div className="relative h-[100vh] w-full flex items-center justify-between px-8 bg-cover bg-center" style={{ backgroundImage: `url(${slides[currentSlide].image})` }}>
+          {/* Left Side: Text Content */}
+          <div className="relative z-10 text-white max-w-lg">
+            <h1 className="text-5xl font-bold leading-tight">
+              Unity transforms challenges into triumphs.
+            </h1>
+            <p className="my-4 text-lg">
+              We are all different, which is great because we are all unique. Without diversity, life would be very boring. We are all different, which is great because we are all unique. Without diversity, life would be very boring.
+            </p>
+            <button className="bg-yellow-500 text-black px-6 py-3 rounded-full text-lg font-semibold">
+              EXPLORE
+            </button>
           </div>
+
+          {/* Right Side: Dynamic Donation Card */}
+          <div className="relative z-10 bg-white p-6 rounded-xl shadow-lg max-w-xs text-black">
+            <h2 className="text-xl font-bold mb-4">{slides[currentSlide].title}</h2>
+            <p className="text-lg mb-2">{slides[currentSlide].description}</p>
+            <p className="text-sm text-gray-600 mb-4">{slides[currentSlide].donations}</p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="bg-green-500 h-2 rounded-full" style={{ width: slides[currentSlide].progress }}></div>
+            </div>
+            <button className="text-yellow-500 font-bold">→</button>
+          </div>
+
+          {/* Left Arrow */}
+          <button onClick={handlePrevClick} className="absolute left-4 z-20 text-white bg-gray-800 bg-opacity-50 p-3 rounded-full focus:outline-none">
+            &#8592;
+          </button>
+
+          {/* Right Arrow */}
+          <button onClick={handleNextClick} className="absolute right-4 z-20 text-white bg-gray-800 bg-opacity-50 p-3 rounded-full focus:outline-none">
+            &#8594;
+          </button>
         </div>
 
+        {/* Rest of your content */}
         <section className="w-full shadow-lg">
           <div className="container px-4 md:px-6 space-y-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2 ">
-
+              <div className="space-y-2">
                 <div className="heading-container mt-5">
                   <h1 className="heading">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl ">  <span> Our Work </span></h2> 
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                      <span> Our Work </span>
+                    </h2>
                   </h1>
                 </div>
-
-
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Discover the impact we are making in our local and global communities.
                 </p>
@@ -158,10 +199,12 @@ function Home() {
         <section className="w-full py-8 md:py-24 lg:py-32 bg-gray-100">
           <div className="container px-4 md:px-6 space-y-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2"> 
-              <div className="heading-container ">
+              <div className="space-y-2">
+                <div className="heading-container">
                   <h1 className="heading">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"> <span> Get Involved </span></h2> 
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                      <span> Get Involved </span>
+                    </h2>
                   </h1>
                 </div>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -201,10 +244,7 @@ function Home() {
           </div>
         </section>
 
-        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-          <p className="text-xs text-muted-foreground">&copy; 2024 NGO</p>
-        </footer>
-
+        <Footer />
       </div>
     </div>
   );
