@@ -8,7 +8,8 @@ import Aboutus from './components/custom/Aboutus.jsx';
 import Donate from './components/custom/Donate.jsx'; 
 import Partners from './components/custom/Partners.jsx';
 import Volunteer from './components/custom/Volunteer.jsx';
-import Activities from './components/custom/Activities.jsx';
+import Activities from './components/custom/Activities.jsx'; 
+import Blog from './components/custom/Blog.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path:'/volunteer',
         element:<Volunteer/>
+      },
+      {
+        path:'/blogs',
+        element:<Blog/>
       }
     ]
   }, 

@@ -4,7 +4,7 @@ import logo from "../assets/NGOlogo.png";
 const Footer = () => {
   return (
     <footer className="bg-[#0D3E33] text-[#F5F7F8] py-4">
-      <div className="container mx-auto max-w-7xl flex flex-wrap justify-between items-start gap-6">
+      <div className="container mx-auto max-w-7xl flex flex-wrap justify-between items-start gap-6 mt-5">
         
         {/* Logo and Description */}
         <div className="flex flex-col items-start max-w-[20%]">

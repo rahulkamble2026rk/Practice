@@ -4,9 +4,9 @@ import Image1 from '../assets/Image1.jpg';
 import Image2 from '../assets/Image2.jpg';
 import Image3 from '../assets/Image3.jpg';
 
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardFooter, CardContent } from '@/components/ui/card';
+// import { Link } from 'react-router-dom';
+// import { Button } from '@/components/ui/button';
+// import { Card, CardHeader, CardTitle, CardFooter, CardContent } from '@/components/ui/card';
 import Footer from '../Footer/index';
 
 const slides = [
@@ -52,7 +52,8 @@ function Home() {
 
   return (
     <div>
-      {/* Fixed Header */}
+      {/* Fixed Header */} 
+      
       <div className="fixed top-0 left-0 right-0 z-50">
         <Header />
       </div>
@@ -96,7 +97,7 @@ function Home() {
           </button>
         </div>
 
-        {/* Rest of your content */}
+        {/* Rest of your content 
         <section className="w-full shadow-lg">
           <div className="container px-4 md:px-6 space-y-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -242,9 +243,10 @@ function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <Footer />
+  <Footer />
+
       </div>
     </div>
   );
